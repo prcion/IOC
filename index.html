@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+  <title>Bycicle</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+  
+  <div class="sky">
+  <button type="button" id="audioBtn" class="button btn-success btn-sm">Porneste audio</button>
+  <img id="cloud" src="img/cloud.png">
+  
+</div>
+
+  
+  <div class="grass"></div>
+  <div class="road">
+    <img id = "bike" class="mario" src="img/bike2.png">
+    <div class="lines"></div>
+
+    <button type="button" id="btn" class="button btn-info btn-lg" style="width:100%; margin-top: 150px">Pasul Urmator</button>
+
+  </div>
+
+  <script>
+
+  var mybutton = document.getElementById("btn");
+
+  var audioBtn = document.getElementById("audioBtn");
+
+  var audio = new Audio('audio/BicicletaInfo.mp3');
+    audio.addEventListener('ended', function(){
+      // in caz ca vrem ceva sa se intample dupa ce se termina fisierul audio
+    })
+
+  audioBtn.onclick = async function (){
+    audioBtn.disabled = true;
+    
+    await audio.play();
+
+    
+    audioBtn.disabled = false;
+  }
+
+  mybutton.onclick = function() {
+      mybutton.disabled = true;
+      setTimeout(function() {
+          mybutton.disabled = false;
+          window.location.href = 'bicycle_answer.html';
+      }, 4000);
+  }
+
+
+
+  $("#btn").click(function(){
+    $("#bike").animate({left: '+=1200px'}, 3000);
+    
+  });
+
+
+  $( document ).ready(function() {
+      setInterval( function(){
+
+        $('#cloud').css("opacity", 1);
+        $('#btn').css("opacity", 1);
+        $('#audioBtn').css("opacity", 1);
+        
+        
+
+        
+      }, 6000);
+  });
+  </script>
+</body>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body style="background-image: url('img/back2.jpg'); background-repeat: no-repeat; background-size: 100%">
+  	<div class="row" style="margin-left:60px  ">
+      <div class="col-md-5"  style=" margin-top:60px" >
+        <button type="button" id="audioBtn" class="button btn-success btn-sm">Porneste audio</button>
+        <br>
+        <h1>Ghicitoare:</h1>
+        <div class="ghicitoare" style="color: black;padding-left: 130px;">
+      	<h1>Nu e tren, nu e masina</h1>
+        <h1>Dar alearga tot pe sine</h1>
+        <h1>Si te duce cand il iei</h1>
+        <h1>Tot orasul daca vrei</h1>
+        </div>
+      </div>
+  	<div class="col-md-4">
+  		<input type="radio" id="bycicle" name="vehicle" value="bycicle">
+      <label for="bycicle"><img src="img/motor.jfif" style="width:50%"></label><br>
+      <input type="radio" id="tram" name="vehicle" value="tram">
+      <label for="tram"><img src="img/tramvai_question.jpg" style="width:50%"></label><br>
+      <input type="radio" id="tank" name="vehicle" value="tank">
+      <label for="tank"><img src="img/tank.png" style="width:50%"></label><br>
+    </div>
+   	<div class="col-md-3" style="margin-top:40px;">
+      <img id="bifa" src="" style="width:80%; margin-right: 40px">
+    </div>
+  </div>
+    <button type="submit" id="btm" style=" margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 80px" class="button btn-info btn-lg">Raspunde</button>
+  	</body>
+  <script>
+ 	const btn = document.querySelector('#btm');
+
+        var audioBtn = document.getElementById("audioBtn");
+
+          var audio = new Audio('audio/TranvaiQuizz.mp3');
+          console.log("audio")
+              audio.addEventListener('ended', function(){
+                // in caz ca vrem ceva sa se intample dupa ce se termina fisierul audio
+              })
+
+          audioBtn.onclick = async function (){
+              audioBtn.disabled = true;
+              
+              await audio.play();    
+              audioBtn.disabled = false;
+          }
+        // handle click button
+        btn.onclick = function () {
+            const rbs = document.querySelectorAll('input[name="vehicle"]');
+            let selectedValue;
+            for (const rb of rbs) {
+                if (rb.checked) {
+                    selectedValue = rb.value;
+                    break;
+                }
+            }
+            if (selectedValue=='tram'){
+            	document.getElementById("bifa").src="img/verde.png";
+              setTimeout(function() {
+                window.location.href = 'index_tren.html';
+              }, 2000);
+            } else {
+            	document.getElementById("bifa").src="img/rosu.png"
+            	setTimeout(function() {
+                window.location.href = 'tramvai_answer.html';
+              }, 2000);
+            }
+        };
+
+  </script>
+</html>

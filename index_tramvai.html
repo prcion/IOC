@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+  <title>Tramvai</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+  <div class="sky">
+    <button type="button" id="audioBtn" class="button btn-success btn-sm">Porneste audio</button>
+    <img id="cloud" src="img/tramvai_scris.jpg">
+  </div>
+
+  <div class="grass"></div>
+  <div class="road">
+    <img id = "tramvai" src="img/tramvai.png">
+    <div class="lines_tramvai"></div>
+    <div class="lines1_tramvai"></div>
+    <button type="button" id="btn" class="button btn-info btn-lg" style="width:100%; margin-top: 150px">Pasul Urmator</button>
+
+  </div>
+
+  <script>
+
+var audioBtn = document.getElementById("audioBtn");
+
+var audio = new Audio('audio/TranvaiInfo.mp3');
+  audio.addEventListener('ended', function(){
+    // in caz ca vrem ceva sa se intample dupa ce se termina fisierul audio
+  })
+
+audioBtn.onclick = async function (){
+  audioBtn.disabled = true;
+  
+  await audio.play();
+
+  
+  audioBtn.disabled = false;
+}
+
+  var mybutton = document.getElementById("btn");
+  mybutton.onclick = function() {
+      mybutton.disabled = true;
+      setTimeout(function() {
+          mybutton.disabled = false;
+          window.location.href = 'tramvai_answer.html';
+      }, 4000);
+  }
+
+
+
+
+  $("#btn").click(function(){
+  $("#tramvai").animate({left: '+=1500px'}, 3000);
+  });
+
+
+  $( document ).ready(function() {
+      setInterval( function(){
+
+        $('#cloud').css("opacity", 1);
+        $('#btn').css("opacity", 1);
+        $('#audioBtn').css("opacity", 1);
+        
+        
+
+        
+      }, 6000);
+  });
+  </script>
+</body>

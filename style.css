@@ -1,0 +1,156 @@
+/*// BASE STYLES //*/
+
+html, body{
+  height: 100%;
+  width:100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.grass, .sky, .road, .dirt{
+  position: relative;
+}
+
+.sky{
+  height: 50%;
+  background: skyblue;
+}
+
+.grass{
+  height: 20%;
+  background: seagreen;
+}
+
+.road{
+  height: 30%;
+  background: dimgrey;
+  box-sizing: border-box;
+  border-top: 10px solid grey;
+  border-bottom: 10px solid grey;
+  width: 100%;
+}
+
+
+.dirt{
+  height: 30%;
+  background: #9b7653 ;
+  box-sizing: border-box;
+  border-top: 10px solid grey;
+  border-bottom: 10px solid grey;
+  width: 100%;
+}
+
+
+.lines{
+  box-sizing: border-box;
+  border: 5px dashed gray;
+  height: 0px;
+  width: 100%;
+  position: absolute;
+  top: 45%;
+}
+
+.lines_tramvai{
+  box-sizing: border-box;
+  border: 2px solid black;
+  height: 0px;
+  width: 100%;
+  position: absolute;
+  top: 45%;
+}
+.lines1_tramvai{
+  box-sizing: border-box;
+  border: 2px solid black;
+  height: 10px;
+  width: 100%;
+  position: absolute;
+  top: 45%;
+}
+
+.lines_tren{
+  box-sizing: border-box;
+  border: 3px solid black;
+  height: 0px;
+  width: 100%;
+  position: absolute;
+  top: 37%;
+}
+.lines1_tren{
+  box-sizing: border-box;
+  border: 3px solid black;
+  height: 20px;
+  width: 100%;
+  position: absolute;
+  top: 37%;
+}
+
+
+
+
+/*// ELEMENTS TO ANIMATE //*/
+
+.mario{
+  position: absolute;
+  height: 150px;
+  width: 200px;
+  top:-48px;
+  left: 0px;
+  animation-name: drive;
+  animation-duration: 6s;
+  animation-fill-mode:both;
+  animation-iteration-count: 1;
+
+}
+
+#tramvai{
+  position: absolute;
+  height: 150px;
+  width: 800px;
+  top:-48px;
+  left: -450px;
+  animation-name: drive;
+  animation-duration: 6s;
+  animation-fill-mode:both;
+  animation-iteration-count: 1;
+}
+
+#tren{
+  position: absolute;
+  height: 200px;
+  width: 600px;
+  top:-90px;
+  left: -450px;
+  animation-name: drive;
+  animation-duration: 6s;
+  animation-fill-mode:both;
+  animation-iteration-count: 1;
+}
+
+
+#cloud{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 700px;
+  max-height: 350px;
+  opacity: 0;
+}
+
+#btn {
+opacity: 0;
+}
+#audioBtn {
+  opacity: 0;
+  }
+
+.btn-danger{
+
+  margin-left: 90%;
+  margin-top: 170px;
+}
+
+/*// KEYFRAMES //*/
+@keyframes drive {
+  from{transform: translateX(-200px)}
+  to{transform: translateX(800px)}
+}

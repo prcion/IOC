@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body style="background-image: url('img/back2.jpg'); background-repeat: no-repeat; background-size: 100%">
+  	<div class="row" style="margin-left:60px  ">
+      <div class="col-md-5"  style=" margin-top:60px" >
+        <button type="button" id="audioBtn" class="button btn-success btn-sm">Porneste audio</button>
+        <br>
+        <h1>Intrebare:</h1>
+        <div class="ghicitoare" style="color: black;padding-left: 130px;">
+      	<h2>
+          Care este culoarea semaforului la care esti obligat sa te opresti?
+        </h2>
+        </div>
+      </div>
+  	<div class="col-md-4">
+  		<input type="radio" id="red" name="color" value="red">
+      <label for="red"><img src="img/rosie.png" style="width:25%"></label><br>
+      <input type="radio" id="yellow" name="color" value="yellow">
+      <label for="yellow"><img src="img/galben.png" style="width:50%"></label><br>
+      <input type="radio" id="green" name="color" value="green">
+      <label for="green"><img src="img/trece.png" style="width:50%"></label><br>
+    </div>
+   	<div class="col-md-3" style="margin-top:40px;">
+      <img id="bifa" src="" style="width:80%; margin-right: 40px">
+    </div>
+  </div>
+    <button type="submit" id="btm" style=" margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 80px" class="button btn-info btn-lg">Raspunde</button>
+  	</body>
+  <script>
+    var audioBtn = document.getElementById("audioBtn");
+
+    var audio = new Audio('audio/MasinaQuizz.mp3');
+    console.log("audio")
+        audio.addEventListener('ended', function(){
+          // in caz ca vrem ceva sa se intample dupa ce se termina fisierul audio
+        })
+
+    audioBtn.onclick = async function (){
+        audioBtn.disabled = true;
+        
+        await audio.play();    
+        audioBtn.disabled = false;
+    }
+
+
+ 	const btn = document.querySelector('#btm');
+
+        // handle click button
+        btn.onclick = function () {
+            const rbs = document.querySelectorAll('input[name="color"]');
+            let selectedValue;
+            for (const rb of rbs) {
+                if (rb.checked) {
+                    selectedValue = rb.value;
+                    break;
+                }
+            }
+            if (selectedValue=='red'){
+            	document.getElementById("bifa").src="img/verde.png";
+              setTimeout(function() {
+                window.location.href = 'index.html';
+              }, 2000);
+            } else {
+            	document.getElementById("bifa").src="img/rosu.png"
+            	setTimeout(function() {
+                window.location.href = 'masina_answer.html';
+              }, 2000);
+            }
+        };
+
+  </script>
+</html>
