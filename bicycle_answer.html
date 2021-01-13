@@ -4,30 +4,27 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body style="background-image: url('img/back.png'); background-repeat: no-repeat; background-size: 100%">
   	<div class="row" style="margin-left:60px  ">
       <div class="col-md-5"  style=" margin-top:60px" >
-    <button type="button" id="audioBtn" class="button btn-success btn-sm">Porneste audio</button>
+    <button type="button" id="audioBtn" class="button btn-success btn-sm" style="visibility: hidden;">Porneste audio</button>
   	<img src="img/parc.jpg" style="width: 80%">
   	<h3>Ce mijloc de transport este cel mai potrivit pentru a te deplasa in aceasta zona?	</h3>
   </div>
   	<div class="col-md-4">
-  		<input type="radio" id="bycicle" name="vehicle" value="bycicle">
+  		<input type="radio" class="radio" id="bycicle" name="vehicle" value="bycicle">
 <label for="bycicle"><img src="img/bicla.png" style="width:50%"></label><br>
-<input type="radio" id="car" name="vehicle" value="car">
+<input type="radio" class="radio" id="car" name="vehicle" value="car">
 <label for="car"><img src="img/masinaa.png" style="width:40%"></label><br>
-<input type="radio" id="tank" name="vehicle" value="tank">
+<input type="radio" class="radio" id="tank" name="vehicle" value="tank">
 <label for="tank"><img src="img/tank.png" style="width:50%"></label><br>
   </div>
    	<div class="col-md-3" style="margin-top:40px;">
   <img id="bifa" src="" style="width:80%; margin-right: 40px">
 </div>
 </div>
-<button type="submit" id="btm" style=" margin-left: auto;
-    margin-right: auto;
-    display: block;
-    margin-top: 80px" class="button btn-info btn-lg">Raspunde</button>
   	</body>
   <script>
      var audioBtn = document.getElementById("audioBtn");
@@ -40,38 +37,39 @@
 
     audioBtn.onclick = async function (){
         audioBtn.disabled = true;
-        
-        await audio.play();    
+
+        await audio.play();
         audioBtn.disabled = false;
     }
 
 
+    $(document).ready(function () {
+      setTimeout(function () {
+        audioBtn.click();
+      } , 1500)
 
+       $('.radio').click(function () {
+         const rbs = document.querySelectorAll('input[name="vehicle"]');
+         let selectedValue;
+         for (const rb of rbs) {
+             if (rb.checked) {
+                 selectedValue = rb.value;
+                 break;
+             }
+         }
+         if (selectedValue=='bycicle'){
+           document.getElementById("bifa").src="img/verde.png";
+           setTimeout(function() {
+             window.location.href = 'index_tramvai.html';
+           }, 2000);
+         } else {
+           document.getElementById("bifa").src="img/rosu.png"
+           setTimeout(function() {
+             window.location.href = 'bicycle_answer.html';
+           }, 2000);
+         }
+       });
 
- 	const btn = document.querySelector('#btm');
-
-        // handle click button
-        btn.onclick = function () {
-            const rbs = document.querySelectorAll('input[name="vehicle"]');
-            let selectedValue;
-            for (const rb of rbs) {
-                if (rb.checked) {
-                    selectedValue = rb.value;
-                    break;
-                }
-            }
-            if (selectedValue=='bycicle'){
-            	document.getElementById("bifa").src="img/verde.png";
-              setTimeout(function() {
-                window.location.href = 'index_tramvai.html';
-              }, 2000);
-            } else {
-            	document.getElementById("bifa").src="img/rosu.png"
-            	setTimeout(function() {
-                window.location.href = 'bicycle_answer.html';
-              }, 2000);
-            }
-        };
-
+   });
   </script>
 </html>

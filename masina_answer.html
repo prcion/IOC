@@ -4,11 +4,12 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body style="background-image: url('img/back2.jpg'); background-repeat: no-repeat; background-size: 100%">
   	<div class="row" style="margin-left:60px  ">
       <div class="col-md-5"  style=" margin-top:60px" >
-        <button type="button" id="audioBtn" class="button btn-success btn-sm">Porneste audio</button>
+        <button type="button" id="audioBtn" class="button btn-success btn-sm" style="visibility: hidden;">Porneste audio</button>
         <br>
         <h1>Intrebare:</h1>
         <div class="ghicitoare" style="color: black;padding-left: 130px;">
@@ -18,21 +19,17 @@
         </div>
       </div>
   	<div class="col-md-4">
-  		<input type="radio" id="red" name="color" value="red">
+  		<input type="radio" id="red" class="radio" name="color" value="red">
       <label for="red"><img src="img/rosie.png" style="width:25%"></label><br>
-      <input type="radio" id="yellow" name="color" value="yellow">
+      <input type="radio" id="yellow" class="radio" name="color" value="yellow">
       <label for="yellow"><img src="img/galben.png" style="width:50%"></label><br>
-      <input type="radio" id="green" name="color" value="green">
+      <input type="radio" id="green" class="radio" name="color" value="green">
       <label for="green"><img src="img/trece.png" style="width:50%"></label><br>
     </div>
    	<div class="col-md-3" style="margin-top:40px;">
       <img id="bifa" src="" style="width:80%; margin-right: 40px">
     </div>
   </div>
-    <button type="submit" id="btm" style=" margin-left: auto;
-    margin-right: auto;
-    display: block;
-    margin-top: 80px" class="button btn-info btn-lg">Raspunde</button>
   	</body>
   <script>
     var audioBtn = document.getElementById("audioBtn");
@@ -45,36 +42,38 @@
 
     audioBtn.onclick = async function (){
         audioBtn.disabled = true;
-        
-        await audio.play();    
+
+        await audio.play();
         audioBtn.disabled = false;
     }
 
+    $(document).ready(function () {
 
- 	const btn = document.querySelector('#btm');
-
-        // handle click button
-        btn.onclick = function () {
-            const rbs = document.querySelectorAll('input[name="color"]');
-            let selectedValue;
-            for (const rb of rbs) {
-                if (rb.checked) {
-                    selectedValue = rb.value;
-                    break;
-                }
-            }
-            if (selectedValue=='red'){
-            	document.getElementById("bifa").src="img/verde.png";
-              setTimeout(function() {
-                window.location.href = 'index.html';
-              }, 2000);
-            } else {
-            	document.getElementById("bifa").src="img/rosu.png"
-            	setTimeout(function() {
-                window.location.href = 'masina_answer.html';
-              }, 2000);
-            }
-        };
+      setTimeout(function () {
+        audioBtn.click();
+      } , 1500)
+      $('.radio').click(function () {
+      const rbs = document.querySelectorAll('input[name="color"]');
+      let selectedValue;
+      for (const rb of rbs) {
+          if (rb.checked) {
+              selectedValue = rb.value;
+              break;
+          }
+      }
+      if (selectedValue=='red'){
+        document.getElementById("bifa").src="img/verde.png";
+        setTimeout(function() {
+          window.location.href = 'index.html';
+        }, 2000);
+      } else {
+        document.getElementById("bifa").src="img/rosu.png"
+        setTimeout(function() {
+          window.location.href = 'masina_answer.html';
+        }, 2000);
+      }
+    });
+   });
 
   </script>
 </html>

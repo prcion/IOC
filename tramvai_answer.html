@@ -4,11 +4,13 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   </head>
   <body style="background-image: url('img/back2.jpg'); background-repeat: no-repeat; background-size: 100%">
   	<div class="row" style="margin-left:60px  ">
       <div class="col-md-5"  style=" margin-top:60px" >
-        <button type="button" id="audioBtn" class="button btn-success btn-sm">Porneste audio</button>
+        <button type="button" id="audioBtn" class="button btn-success btn-sm" style="visibility: hidden;">Porneste audio</button>
         <br>
         <h1>Ghicitoare:</h1>
         <div class="ghicitoare" style="color: black;padding-left: 130px;">
@@ -19,24 +21,19 @@
         </div>
       </div>
   	<div class="col-md-4">
-  		<input type="radio" id="bycicle" name="vehicle" value="bycicle">
+  		<input type="radio" id="bycicle" class="radio" name="vehicle" value="bycicle">
       <label for="bycicle"><img src="img/motor.jfif" style="width:50%"></label><br>
-      <input type="radio" id="tram" name="vehicle" value="tram">
+      <input type="radio" id="tram" class="radio" name="vehicle" value="tram">
       <label for="tram"><img src="img/tramvai_question.jpg" style="width:50%"></label><br>
-      <input type="radio" id="tank" name="vehicle" value="tank">
+      <input type="radio" id="tank" class="radio" name="vehicle" value="tank">
       <label for="tank"><img src="img/tank.png" style="width:50%"></label><br>
     </div>
    	<div class="col-md-3" style="margin-top:40px;">
       <img id="bifa" src="" style="width:80%; margin-right: 40px">
     </div>
   </div>
-    <button type="submit" id="btm" style=" margin-left: auto;
-    margin-right: auto;
-    display: block;
-    margin-top: 80px" class="button btn-info btn-lg">Raspunde</button>
   	</body>
   <script>
- 	const btn = document.querySelector('#btm');
 
         var audioBtn = document.getElementById("audioBtn");
 
@@ -48,32 +45,38 @@
 
           audioBtn.onclick = async function (){
               audioBtn.disabled = true;
-              
-              await audio.play();    
+
+              await audio.play();
               audioBtn.disabled = false;
           }
-        // handle click button
-        btn.onclick = function () {
-            const rbs = document.querySelectorAll('input[name="vehicle"]');
-            let selectedValue;
-            for (const rb of rbs) {
-                if (rb.checked) {
-                    selectedValue = rb.value;
-                    break;
-                }
-            }
-            if (selectedValue=='tram'){
-            	document.getElementById("bifa").src="img/verde.png";
-              setTimeout(function() {
-                window.location.href = 'index_tren.html';
-              }, 2000);
-            } else {
-            	document.getElementById("bifa").src="img/rosu.png"
-            	setTimeout(function() {
-                window.location.href = 'tramvai_answer.html';
-              }, 2000);
-            }
-        };
+
+          $(document).ready(function () {
+              setTimeout(function () {
+                  audioBtn.click();
+              } , 1500)
+            $('.radio').click(function () {
+              const rbs = document.querySelectorAll('input[name="vehicle"]');
+              let selectedValue;
+              for (const rb of rbs) {
+                  if (rb.checked) {
+                      selectedValue = rb.value;
+                      break;
+                  }
+              }
+              if (selectedValue=='tram'){
+              	document.getElementById("bifa").src="img/verde.png";
+                setTimeout(function() {
+                  window.location.href = 'index_tren.html';
+                }, 2000);
+              } else {
+              	document.getElementById("bifa").src="img/rosu.png"
+              	setTimeout(function() {
+                  window.location.href = 'tramvai_answer.html';
+                }, 2000);
+              }
+          });
+         });
+
 
   </script>
 </html>

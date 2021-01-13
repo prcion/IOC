@@ -54,13 +54,18 @@ audioBtn.onclick = async function (){
   $("#tramvai").animate({left: '+=1500px'}, 3000);
   });
 
+  var started = false;
 
   $( document ).ready(function() {
       setInterval( function(){
-
+  if(!started){
+    audioBtn.click();
+    started = true;
+  }
+  
         $('#cloud').css("opacity", 1);
         $('#btn').css("opacity", 1);
-        $('#audioBtn').css("opacity", 1);
+        $('#audioBtn').css("opacity", 0);
         
         
 
